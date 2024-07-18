@@ -65,6 +65,9 @@ def get_count():
     """
     :return: 计数的值
     """
+    headers = dict(request.headers)
+    response_data["headers"] = headers
+    print('header value:',headers)
     counter = Counters.query.filter(Counters.id == 1).first()
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
 
