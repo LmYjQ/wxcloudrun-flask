@@ -4,6 +4,7 @@ from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
+from flask import Flask, request, jsonify
 
 APPID = 'wxa68a9f29cd2a5987'
 APP_SECRET = '1e10f7573276eb86c4c021a508a248b5'
@@ -99,11 +100,17 @@ def login():
     custom_token = generate_custom_token(openid)
 
     # 返回自定义登录态给小程序
-    return jsonify({
+    # return jsonify({
+    #     'custom_token': custom_token,
+    #     'openid': openid,
+    #     'unionid': unionid
+    # })
+    data = {
         'custom_token': custom_token,
         'openid': openid,
         'unionid': unionid
-    })
+    }
+    return make_succ_response(data)
 
 def generate_custom_token(openid):
     # 这里实现你的自定义登录态生成逻辑
