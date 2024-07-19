@@ -6,9 +6,6 @@ from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 from flask import Flask, request, jsonify
 
-APPID = 'wxa68a9f29cd2a5987'
-APP_SECRET = '1e10f7573276eb86c4c021a508a248b5'
-
 @app.route('/')
 def index():
     """
@@ -74,7 +71,7 @@ def get_count():
 @app.route('/api/user_exists', methods=['GET'])
 def user_exists():
     headers = dict(request.headers)
-    openid = headers['X-Wx-0penid']
+    openid = '1111' # headers['X-Wx-0penid']
     user = query_user_by_openid(openid)
     if user is None:
         return make_succ_response({'header':headers, 'exists':0})
