@@ -66,7 +66,6 @@ def get_count():
     :return: 计数的值
     """
     headers = dict(request.headers)
-    print('header value:',headers)
     counter = Counters.query.filter(Counters.id == 1).first()
     data = {'header':headers,'count':counter.count}
     return make_succ_response(0) if counter is None else make_succ_response(data)
@@ -75,8 +74,7 @@ def get_count():
 @app.route('/api/user_exists', methods=['GET'])
 def user_exists():
     headers = dict(request.headers)
-    print(headers)
-    openid = 'oiVIk7edZTVoBqYBKMAIU6PixJDk' # headers['X-Wx-0penid']
+    openid = headers['X-Wx-0penid']
     user = query_user_by_openid(openid)
     if user is None:
         return make_succ_response({'header':headers, 'exists':0})
