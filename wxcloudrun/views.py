@@ -79,6 +79,6 @@ def user_exists():
     openid = 'oiVIk7edZTVoBqYBKMAIU6PixJDk' # headers['X-Wx-0penid']
     user = query_user_by_openid(openid)
     if user is None:
-        return make_succ_response({openid:0})
+        return make_succ_response({'header':headers, 'exists':0})
     else:
-        return make_succ_response({openid:1})
+        return make_succ_response({'header':headers, 'exists':1})
