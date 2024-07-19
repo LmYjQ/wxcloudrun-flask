@@ -71,9 +71,9 @@ def get_count():
 @app.route('/api/user_exists', methods=['GET'])
 def user_exists():
     headers = dict(request.headers)
-    openid = headers.get('X-Wx-0penid','openidnotfound')
+    openid = headers.get('X-Wx-Openid','openidnotfound')
     user = query_user_by_openid(openid)
     if user is None:
-        return make_succ_response({'header':headers, 'exists':0})
+        return make_succ_response({'header':headers, 'exists':0, 'openid':openid})
     else:
-        return make_succ_response({'header':headers, 'exists':1})
+        return make_succ_response({'header':headers, 'exists':1, 'openid':openid})
